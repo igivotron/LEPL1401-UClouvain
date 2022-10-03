@@ -1,0 +1,10 @@
+i = 1
+list = []
+while i <= 10:
+    a = pow(i, 2)
+    list.append(a)
+    b = sum(list)
+    c = int(i*(i+1)*(2*i+1)*1/6)
+    print(i, "\t", a, "\t", b, "\t", c)
+    i +=1
+    
