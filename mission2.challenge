@@ -1,0 +1,14 @@
+exp = int(input("Entrez la valeur maximale pour l'exposant : "))
+a, b, c, d = exp, exp, exp, exp
+max = int(input("Entrez la valeur maximale pour w, x, y et z : "))
+minimum = [max, max, max, max]
+
+for w in range(1,max):
+    for x in range(1, max):
+        for y in range(1, max):
+            for z in range(1, max):
+                eq = pow(w,a) + pow(x,b)
+                if eq == pow(y,c) + pow(z,c):
+                    if (w +x +y +z) < sum(minimum):
+                        minimum = [w ,x ,y, z]
+print(minimum)
