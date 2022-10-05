@@ -1,12 +1,29 @@
+#-*-coding: utf-8-*-
+
 a = int(input("Valeur de a : "))
 b = int(input("Valeur de b : "))
 c = int(input("Valeur de c : "))
+max = int(input("Entrez la valeur maximale pour x, y et z : "))
 
-test =100
 
-for x in range(1, test):
-    for y in range(1, test):
-        for z in range(1, test):
+def frog(x ,y ,z): ### Test si le nombre a des diviseurs
+    ribbit =0
+    if min(x, y, z) == 1: ### Si le min == 1 alors il n'y a pas de diviseurs commun à part 1
+        return True
+    for i in range(2,min(x ,y, z)+1): ### Boucle de 2 à min(x,y,z)+1 pour éviter la division de 1
+        if x%i == 0 and y%i == 0 and z%i ==0:
+            ribbit += 1 ### nombre de diviseur
+            break ### Pas besoin de plus d'un diviseur
+    if ribbit == 0: ### Si pas de diviseur commun alors return True
+        return True
+            
+
+
+for x in range(1, max):
+    for y in range(1, max):
+        for z in range(1, max):
             eq = pow(x,a) + pow(y,b)
             if eq == pow(z,c):
-                print(x, y, z)
+                ###print(x, y, z)
+                if frog(x,y,z):
+                    print(x,y,z)
