@@ -41,7 +41,4 @@ def distances_matrice(l):
                 tic.append(None)
         tac.append(tic)
     return tac
-        
-l = ["AG", "AT", "GT", "ACG", "ACT" ]
 
-print(distances_matrice(l))
