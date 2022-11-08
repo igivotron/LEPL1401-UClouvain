@@ -67,6 +67,7 @@ while loop:
     alpha = alpha - t*a_angul/100
 
     if alpha <= 0.000001:
+        alpha = 0
         loop = False
 
 loop = True
@@ -79,6 +80,7 @@ while loop:
     x_t.append(x)
 
     if v <= 0.000001:
+        v = 0
         loop = False
 
 plt.plot(x_t, label="Positon en [m]")
