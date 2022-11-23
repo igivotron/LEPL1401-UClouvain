@@ -1,7 +1,6 @@
 class Duree :
     def __init__(self, h, m, s):
         """
-
         :param h: Nombre d'heures. Entier plus grand ou égal à 0
         :param m: Nombre de minutes. Entier compris dans [0;60[
         :param s: Nombre de secondes. Entier compris dans [0;60[
@@ -90,30 +89,29 @@ class Album :
 
     def add(self,chanson):
         t = Duree(0,0,0)
-        lim = Duree(0,75,0)
+        lim = Duree(1,15,0)
         for i in self.music:
-            t.ajouter(i.d)
-        if len(self.music) <= 70 and t.to_secondes() <= lim.to_secondes():
+            t.ajouter(i.duree)
+        if len(self.music) < 100 and t.to_secondes() + chanson.duree.to_secondes() <= lim.to_secondes():
             self.music.append(chanson)
             return self
         else:
             return False
 
     def __str__(self):
-        for i in self.music:
-            print(i)
+        text = ""
+        for i in range(len(self.music)):
+            text += "{:02}: ".format(i) + str(self.music[i]) + "\n"
+        return text
 
 if __name__ == "__main__":
     t = Duree(0, 1, 0)
-    c = Chanson("Ma couille","Edouard",t)
+    tt = Duree(1,14,0)
+    a = Chanson("Ma couille droite","Edouard",t)
+    b = Chanson("Ma couille gauche","Edouard",tt)
+    c = Chanson("Prothèse prostatique","Edouard",t)
     ema = Album(1)
+    ema.add(a)
+    ema.add(b)
     ema.add(c)
     print(ema)
-
-
-
-
-
-    pass
-    # A COMPLETER PAR LES ETUDIANTS
-    # (mettez ici votre code pour créer les albums à partir de la lecture du fichier 'music-db.txt')
