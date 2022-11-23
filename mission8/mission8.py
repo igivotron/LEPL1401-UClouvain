@@ -105,13 +105,10 @@ class Album :
         return text
 
 if __name__ == "__main__":
-    t = Duree(0, 1, 0)
-    tt = Duree(1,14,0)
-    a = Chanson("Ma couille droite","Edouard",t)
-    b = Chanson("Ma couille gauche","Edouard",tt)
-    c = Chanson("Prothèse prostatique","Edouard",t)
-    ema = Album(1)
-    ema.add(a)
-    ema.add(b)
-    ema.add(c)
-    print(ema)
+    
+    with open("music-db.txt","r") as f:
+        l = f.read().splitlines()
+        lc = []
+        for i in range(len(l)):
+            l[i] = l[i].split()
+            l[i] = Chanson(l[i][0], l[i][1], Duree(0,int(l[i][2]),int(l[i][3])))
