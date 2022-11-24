@@ -91,9 +91,8 @@ class Album:
 
     def add(self, chanson):
         lim = Duree(1, 15, 0)
-        self.t.ajouter(i.duree)
-        print(self.t)
         if len(self.music) < 100 and self.t.to_secondes() + chanson.duree.to_secondes() <= lim.to_secondes():
+            self.t.ajouter(i.duree)
             self.music.append(chanson)
             return self
         else:
