@@ -1,3 +1,5 @@
+### Codé par Igor Grégoire et Brieuc Loncourt
+
 class Duree:
     def __init__(self, h, m, s):
         """
@@ -91,10 +93,10 @@ class Album:
 
     def add(self, chanson):
         lim = Duree(1, 15, 0)
-        if len(self.music) < 100 and self.t.to_secondes() + chanson.duree.to_secondes() <= lim.to_secondes():
-            self.t.ajouter(i.duree)
+        if len(self.music) < 100 and self.t.to_secondes() + chanson.duree.to_secondes() < lim.to_secondes():
             self.music.append(chanson)
-            return self
+            self.t.ajouter(chanson.duree)
+            return True
         else:
             return False
 
@@ -114,7 +116,18 @@ if __name__ == "__main__":
             l[i] = l[i].split()
             l[i] = Chanson(l[i][0], l[i][1], Duree(0, int(l[i][2]), int(l[i][3])))
 
-    alb = Album(1)
+    a = 1
+    b = -1
+    alb = Album(a)
     for i in l:
-        alb.add(i)
+        b +=1
+        if alb.add(i) == False:
+            print("Album {num} ({x} chansons, {d})".format(num=a,x=b,d=alb.t))
+            print(alb)
+            a +=1
+            b = 0
+            alb = Album(a)
+            alb.add(i)
+    print("Album {num} ({x} chansons, {d})".format(num=a, x=b, d=alb.t))
     print(alb)
+
