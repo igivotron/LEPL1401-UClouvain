@@ -1,4 +1,4 @@
-class Duree :
+class Duree:
     def __init__(self, h, m, s):
         """
         :param h: Nombre d'heures. Entier plus grand ou égal à 0
@@ -47,18 +47,18 @@ class Duree :
         else:
             return True
 
-    def ajouter(self,d):
+    def ajouter(self, d):
         """
         Additionne deux temps
         :param d: Instance de durée
         :return: Met à jour le self
         """
         sec = self.seconde + d.seconde
-        minu = sec//60
-        sec = sec%60
+        minu = sec // 60
+        sec = sec % 60
         minu += self.minute + d.minute
-        heu = minu//60
-        minu = minu%60
+        heu = minu // 60
+        minu = minu % 60
         heu += self.heure + d.heure
         self.seconde, self.minute, self.heure = sec, minu, heu
         return self
@@ -67,7 +67,7 @@ class Duree :
         return "{:02}:{:02}:{:02}".format(self.heure, self.minute, self.seconde)
 
 
-class Chanson :
+class Chanson:
     def __init__(self, t, a, d):
         """
         Initialise Chanson
@@ -80,19 +80,20 @@ class Chanson :
         self.duree = d
 
     def __str__(self):
-        return "{TITRE} - {AUTEUR} - {DUREE}".format(TITRE=self.titre,AUTEUR=self.auteur,DUREE=self.duree)
+        return "{TITRE} - {AUTEUR} - {DUREE}".format(TITRE=self.titre, AUTEUR=self.auteur, DUREE=self.duree)
 
-class Album :
+
+class Album:
     def __init__(self, numero):
         self.numero = numero
         self.music = []
+        self.t = Duree(0, 0, 0)
 
-    def add(self,chanson):
-        t = Duree(0,0,0)
-        lim = Duree(1,15,0)
-        for i in self.music:
-            t.ajouter(i.duree)
-        if len(self.music) < 100 and t.to_secondes() + chanson.duree.to_secondes() <= lim.to_secondes():
+    def add(self, chanson):
+        lim = Duree(1, 15, 0)
+        self.t.ajouter(i.duree)
+        print(self.t)
+        if len(self.music) < 100 and self.t.to_secondes() + chanson.duree.to_secondes() <= lim.to_secondes():
             self.music.append(chanson)
             return self
         else:
@@ -101,14 +102,20 @@ class Album :
     def __str__(self):
         text = ""
         for i in range(len(self.music)):
-            text += "{:02}: ".format(i) + str(self.music[i]) + "\n"
+            text += "{:02}: ".format(i+1) + str(self.music[i]) + "\n"
         return text
 
+
 if __name__ == "__main__":
-    
-    with open("music-db.txt","r") as f:
+
+    with open("music-db.txt", "r") as f:
         l = f.read().splitlines()
         lc = []
         for i in range(len(l)):
             l[i] = l[i].split()
-            l[i] = Chanson(l[i][0], l[i][1], Duree(0,int(l[i][2]),int(l[i][3])))
+            l[i] = Chanson(l[i][0], l[i][1], Duree(0, int(l[i][2]), int(l[i][3])))
+
+    alb = Album(1)
+    for i in l:
+        alb.add(i)
+    print(alb)
