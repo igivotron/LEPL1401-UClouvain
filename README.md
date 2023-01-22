@@ -1,3 +1,3 @@
 # UCLouvain_EPL
 
-Exercices réalisés sur base des énonncés d'inginious
+Exercices réalisés sur base des énoncés d'inginious
