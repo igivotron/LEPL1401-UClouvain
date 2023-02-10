@@ -7,4 +7,7 @@ Info1 contient mes codes du cours d'informatique de Q1.
 
 MethodeNum contient mes solutions aux devoirs de méthodes numériques.
 
-Merci de ne copier aucun de ces codes
+
+
+
+Merci de ne copier aucun de ces codes.
